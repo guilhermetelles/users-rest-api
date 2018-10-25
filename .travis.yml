@@ -7,8 +7,7 @@ cache:
 before_deploy:
 - npm install now --no-save
 - now rm node-cs --token $NOW_TOKEN -- yes || true
-test:
-  script: skip
+script: echo "Skipping tests"
 deploy:
 - provider: script
   script: now --public --token $NOW_TOKEN
