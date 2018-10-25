@@ -6,7 +6,7 @@ cache:
   - node_modules
 before_deploy:
 - npm install now --no-save
-- now rm users-rest-api-cd --token $NOW_TOKEN -- yes || true
+- now rm users-rest-api-cd --token $NOW_TOKEN --yes || true
 script: echo "Skipping tests"
 deploy:
 - provider: script
