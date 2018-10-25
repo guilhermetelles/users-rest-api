@@ -1,8 +1,9 @@
 const config = require('./common/config/env.config.js');
 
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
+const app = express();
 
 const AuthorizationRouter = require('./authorization/routes.config');
 const UsersRouter = require('./users/routes.config');
@@ -24,6 +25,10 @@ app.use(bodyParser.json());
 AuthorizationRouter.routesConfig(app);
 UsersRouter.routesConfig(app);
 
+// add a simple html as home
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + '/pages/index.html'));
+});
 
 app.listen(config.port, function () {
   console.log('app listening at port %s', config.port);
