@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
-// const AuthorizationRouter = require('./authorization/routes.config');
+const AuthorizationRouter = require('./authorization/routes.config');
 const UsersRouter = require('./users/routes.config');
 
 app.use(function (req, res, next) {
@@ -21,7 +21,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(bodyParser.json());
-// AuthorizationRouter.routesConfig(app);
+AuthorizationRouter.routesConfig(app);
 UsersRouter.routesConfig(app);
 
 
