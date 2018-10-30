@@ -11,7 +11,7 @@ WORKDIR /app
 RUN npm install
 
 # Exporse port 80
-EXPOSE 80
+EXPOSE 3600
 
 # Launch this beautiful application
 CMD ["npm", "start"]
