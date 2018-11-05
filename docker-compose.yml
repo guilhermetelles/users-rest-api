@@ -2,21 +2,23 @@ version: '2'
 services:
   app:
     build: .
-    command: npm run local
+    command: npm start
     container_name: 'app'
     volumes:
       - .:/usr/app/
       - /usr/app/node_modules
     ports:
-      - '8080:8080'
+      - '3600:3600'
     depends_on:
+      - localdb
+    links:
       - localdb
     environment:
       EXPRESS_PORT: 8080
       MONGODB_HOST: localdb
       MONGODB_PORT: 27017
-      MONGODB_DATABASE: meteor
-      MONGODB_AUTH_DATABASE: admin
+      MONGODB_DATABASE: rest-learning
+      # MONGODB_AUTH_DATABASE: admin
 
   localdb:
     image: mongo:latest
@@ -24,6 +26,8 @@ services:
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
+    expose:
+      - '27017'
     ports:
       - 27018:27017
     command: mongod --smallfiles --logpath=/dev/null # --quiet
